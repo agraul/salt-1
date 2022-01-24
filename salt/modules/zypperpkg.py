@@ -3226,7 +3226,7 @@ def services_need_restart(root=None, **kwargs):
     zypper_output = __zypper__(root=root).nolock.call(*cmd)
     services = zypper_output.split()
 
-    return services
+    return []
 
 
 def get_repo_keys(info=False, root=None, **kwargs):
