@@ -21,7 +21,7 @@ jobs:
           path: salt-jenkins
       - name: Install test dependencies
         working-directory: ./salt-jenkins
-        run: sudo salt-call --local --file-root=state-tree state.apply golden-image-provision
+        run: sudo salt-call --local --file-root=state-tree state.apply golden-images-provision
       - name: Run tests
         working-directory: ./salt
         run: nox --session 'pytest-3(coverage=False)' -- tests/pytests/unit/
