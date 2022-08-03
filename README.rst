@@ -39,7 +39,7 @@
 *Salt is the world’s fastest, most intelligent and scalable automation*
 *engine.*
 
-Very important change.
+Very important change. And another
 
 About Salt
 ==========
