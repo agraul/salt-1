@@ -17,7 +17,8 @@ jobs:
       - name: Check out Salt Jenkins
         uses: actions/checkout@v3
         with:
-          repository: "saltstack/salt-jenkins"
+          repository: saltstack/salt-jenkins
+          path: salt-jenkins
       - name: Install test dependencies
         working-directory: ./salt-jenkins
         run: sudo salt-call --local --file-root=state-tree state.apply golden-image-provision
