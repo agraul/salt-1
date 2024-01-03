@@ -10,16 +10,14 @@ on:
 jobs:
   unit-tests:
     runs-on: ubuntu-latest
-
+    container:
+      image: registry.opensuse.orgsystemsmanagement/saltstack/products/testing/containers/leap15.5/containers/salt-testsuite-github:leap15.5
+      volumes:
+        - salt:/code
     steps:
       - name: Checkout Salt
         uses: actions/checkout@v4
       - name: Run unit tests
-        container:
-          image: registry.opensuse.orgsystemsmanagement/saltstack/products/testing/containers/leap15.5/containers/salt-testsuite-github:leap15.5
-          volumes:
-            - salt:/code
-
         run: |
           salt-test --skiplist https://raw.githubusercontent.com/openSUSE/salt-test-skiplist/main/skipped_tests.toml \
             --directory /code --package-flavor classic unit
