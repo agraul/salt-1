@@ -16,6 +16,8 @@ try:
 except ImportError:
     HAS_HG = False
 
+pytestmark = [pytest.mark.skifif(HAS_HG is False, reason="Needs hglib.")]
+
 
 @pytest.fixture(scope="module")
 def configure_loader_modules(master_opts):
