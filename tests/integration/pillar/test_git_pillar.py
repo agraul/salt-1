@@ -105,7 +105,7 @@ INSIDE_CONTAINER = os.getenv("HOSTNAME", "") == "salt-test-container"
 pytestmark = [
     SKIP_INITIAL_PHOTONOS_FAILURES,
     pytest.mark.skip_on_platforms(windows=True, darwin=True),
-    pytest.mark.skipif(INSIDE_CONTAINER, "Communication problems between containers."),
+    pytest.mark.skipif(INSIDE_CONTAINER, reason="Communication problems between containers."),
 ]
 
 
