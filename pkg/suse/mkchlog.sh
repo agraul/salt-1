@@ -1,15 +1,12 @@
-echo "Generating changelog entry for Salt package"
-if ! osc vc _temp.changes;
+#!/bin/sh
+
+gitroot=$(git rev-parse --show-toplevel)
+changes="$gitroot/pkg/suse/changelogs/temp.changes"
+
+echo "Generate changelog entry for Salt package"
+if ! osc vc "$changes";
 then
     exit 1;
 fi
 
-echo "Update changelog files"
-echo >> _temp.changes
-
-for i in $(ls changelogs/*/salt.changes); do
-    echo "$(cat _temp.changes $i)" > $i
-    git add $i
-done
-
-rm _temp.changes
+git add "$changes"
