@@ -1,0 +1,27 @@
+name: Update changelogs
+
+on:
+  push:
+    branches:
+      - "openSUSE/release/*"
+    paths:
+      - pkg/suse/changelogs/temp.changes
+
+
+jobs:
+  update_changelogs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout changelogs
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: pkg/suse/changelogs
+      - name: Populate codestream changelogs
+        run: |
+          for f in pkg/suse/changelogs/*/salt.changes; do
+            echo "$(cat pkg/suse/changelogs/temp.changes $f)" >$f
+          done
+          rm pkg/suse/changelogs/temp.changes
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update changelogs"
